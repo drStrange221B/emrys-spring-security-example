@@ -1,0 +1,13 @@
+package emrys.spring.security;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class EmrysSpringSecurityApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(EmrysSpringSecurityApplication.class, args);
+	}
+
+}
