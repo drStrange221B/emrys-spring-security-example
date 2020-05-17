@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>emrys.spring.security</groupId>
-	<artifactId>spring-security</artifactId>
+	<artifactId>emrys-spring-security-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>emrys-spring-security</name>
 	<description>Spring Security Example</description>
