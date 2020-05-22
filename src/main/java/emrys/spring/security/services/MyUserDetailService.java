@@ -25,6 +25,6 @@ public class MyUserDetailService implements UserDetailsService {
 
          Supplier<RuntimeException> makeFoo = () -> new RuntimeException("User not found");
 
-        return new MyUserDetails(user.orElseThrow( makeFoo));
+        return new MyUserDetails(user.orElseThrow( ()-> new UsernameNotFoundException("Not Found: " + userName)));
     }
 }
