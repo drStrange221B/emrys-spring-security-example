@@ -1,0 +1,158 @@
+What is Spring Security can do:
+1) UserName / Password Authentication
+2) SSO/OKTA/LDAP
+3) App Level Authorization
+4) Intra App Authorization like OAuth
+5) Microservice security (using tokens, JWT)
+6) Method level Security
+
+5 Core Concepts in Spring Secutiry
+1) Authentication
+2) Authorization
+3) Principal
+4) Granted Authority
+5) Roles
+
+Authentication: In simple term: answering the question " WHO ARE YOU?"
+process of identifying the user that are trying to access the Application.
+Identifying the user credential is called Authentication. Usually Application that user is trying
+to access has Account in the system what are kinda uniquely
+corresponds to the user. so when user acces the application, user has to specify which of the
+applications' account corresponds to the user.
+that is usually done by providing the sign credential. i.e username and password.
+
+Types of Authentication
+1) Knowledge Base Authentication: Authentication using Knowledge i.e something that an Application
+ knows ( saved in the system)is called knowledge based Authentication. e.g
+1) UserName/Password,
+2) Pin Code,
+3) Answer to secret / personal question
+
+Knowledge based Authentication are usually safe, simple and affective, but it has some downside. if
+someone came across you username and password
+they can impersonate you and have access your account.
+
+
+2) Possession Based Authentication:
+Check if the user are in possession of some thing that the user are suppose to possess all time
+like user phone.
+this is when app send you and text message and ask you to enter the text code.
+eg.
+1) Phone/Text messages
+2) Key Cards and badges
+3) Access Tokens Devices
+
+3) Multi Factor Authentication: Using both Knowledge Base Authentication and Possession Based Authentication.
+
+
+Authorization:
+It is answering " Can This User do this?". Allowing or not allowing the user to do something that
+they are trying to do?
+To proceed with Authorization the user first needs to be Authenticated first.
+
+
+Principal:
+Principal is the user that has be identified through the process of authentication. In other word a
+ PRINCIPAL is currently logged in user.A unique information or account in the system that you tie to
+a specific person in the context of the application. once the user is authenticated by using username
+and Password the Application established the principle and it remembers the user. This is the reason
+why we authenticate with the application only once. This is the reason why we don't need to authenticate
+for every request or every page load.
+
+
+How Does Authorization Happens?
+Granted Authority:
+How does application decides whether or not user can access particular functionality. For that the
+application has some pre configured permission
+called Granted Authority.
+
+Authorities: Authorities are the permission that a user can have. Applications are configured with
+these Authorities. Fine grain permission are Authorities
+
+
+Roles:
+Roles are the group of Authorities. Coarse - grained grouping of permission ( authorities ) are roles.
+
+Spring Security are implemented using Filters from Servlet Techonology:
+
+A Web application will have bunch of servlets, which basically take in request, process it and respond
+to the client. Depending on the URL a right servlet is picked
+Servlet Contains looks at the URL and mapped the correct Servlet and execute the method on the servlet.
+
+Filters are cross-cutting concerns. Filters stands right in the middle of Client and servlet of the
+application and intercept every request, this gives an opportunity
+to do something with every request. eg.
+1) log every request
+2) check every request to see a particular header is present.
+
+
+AuthenticationManager:
+The way to configure authentication in spring security is by affecting AuthenticationManager.
+Use AuthenticationManagerBuilder to configure what the authenticationManager actually should do. This is
+done in two steps
+1) Get hold of AuthenticationManagerBuilder
+2) Set the configuration on it.
+
+How to get hot of Authentication manager builder?
+In Spring Security there there is a class WebSecurityConfigurerAdapter which as
+method confugure( AuthenticationManagerBuilder authMgrBldr) that takes in AuthenticationManagerBuilder
+as an argument. By extending the class and overriding the configure method. spring security give the
+capability to configure custom security.
+
+
+HttpSecurity: HttpSecurity let application to configure what are the path that a client can access.
+
+
+Filter is use to achieve Spring Security is called Delegating Filter Proxy. This catch all filter that
+Spring Security adds as the starting point is actually Delegating filter. it does not actually do the
+job itself but instead it delegate to other spring specific filters to do different things depending
+the URL being requested. One of the filters is the Authentication Filter, which intercepts all
+authentications request and initiate the authentication process.
+
+When spring security performs authentication it keeps tracks of both input and the output using the
+object of type Authentication. Authentication is an internal Spring Security interface type.
+Authentication object meant to hold the credential before Authentication and once the user is
+Authenticated it holds the Principal. Authentication is kinda like the data transfer object for
+Authentication and holder of principal after the user has been authenticated.
+
+Providers does the actual Authentication underhood called AuthenticationProvider. AuthenticationProvider
+is an interface that actually has a method called authenticate(). By providing the implementation for
+this method in the application.
+
+AuthenticationManager implements ProviderManager which delegates the AuthenticationProvider for
+Authentication. Once the user is Authenticated by the UserDetailSerice, UserDetail object is return
+by AuthenticationProvider in the form of Principal while then save in Security context in the
+ThreadLocal object in Authentication filter. this whole mechanism will be put into the session by
+ one of the filters which is why there is no need to authenticate multiple times.
+
+
+
+
+
+
+
+
+
+
+
+
+ USER SCHEMA
+ https://docs.spring.io/spring-security/site/docs/4.0.x/reference/html/appendix-schema.html
+
+
+
+docker
+
+docker run --name mysqle11 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -p 3306:3306 -d mysql
+
+
+
+
+
+
+
+
+
+
+
+
