@@ -1,14 +1,15 @@
 package emrys.spring.security.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class IndexControllers {
 
     @GetMapping("/")
     public String index(){
-        return ("<h1> Welcome ALL ! </h1>");
+        return "index";
     }
 
     @GetMapping("/users")
@@ -21,6 +22,13 @@ public class IndexControllers {
     public String admin()
     {
         return ("<h1> Welcome Admin !</h1>");
+    }
+
+
+    @GetMapping("/login")
+    public String login()
+    {
+        return "login";
     }
 
 }
